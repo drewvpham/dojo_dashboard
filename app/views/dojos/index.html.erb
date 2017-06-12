@@ -5,7 +5,12 @@
     <title>All Dojos</title>
   </head>
   <body>
-    <h1>Listing <%=@dojos.count%> dojos</h1>
+    <h1>Listing <%= pluralize(@dojos.count, "Dojo") %></h1>
+    <% if flash[:success] %>
+      <%= flash[:success] %>
+
+    <% end %>
+
     <table>
       <tr>
         <th>Coding Dojo Branch</th>
@@ -23,5 +28,6 @@
     <%end%>
 
     </table>
+    <a href='dojos/new'>Create Dojo</a>
   </body>
 </html>
