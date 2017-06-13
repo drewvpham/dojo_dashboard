@@ -5,13 +5,36 @@
     <title>Hello</title>
   </head>
   <body>
-    <%=@dojo.branch%> Dojo
+    <%=@dojo.branch%> Dojo <a href="/dojos/<%=@dojo.id%>/edit">Edit</a>
     <p></p>
     Address: <%=@dojo.street%>
     <p></p>
     City: <%=@dojo.city%>
     <p></p>
     State:<%=@dojo.state%>
+    <p></p>
+    <a href="/dojos/<%=@dojo.id%>/students/new">Add Student</a>
+    <%= link_to "Home", root_path %>
+
+
+    <table>
+      <tr>
+
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    <%@students.each do |student|%>
+    <tr>
+      <td><%=student.first_name%></td>
+      <td><%=student.last_name%></td>
+      <td><%=student.email%></td>
+      <td><a href="/students/<%= student.id %>">Show</a> | <a href="/students/<%=student.id%>/edit">Edit</a> | <a href="/students/<%=student.id%>" data-method='delete'>Delete</a>  </td>
+    </tr>
+    <%end%>
+
+    </table>
 
   </body>
 </html>

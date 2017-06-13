@@ -6,9 +6,10 @@
   </head>
   <body>
     <h1>Listing <%= pluralize(@dojos.count, "Dojo") %></h1>
+
+    
     <% if flash[:success] %>
       <%= flash[:success] %>
-
     <% end %>
 
     <table>
@@ -19,7 +20,7 @@
         <th>State</th>
         <th>Actions</th>
       </tr>
-    <%@dojos.each do |dojo|%>
+    <%@dojos.reverse.each do |dojo|%>
     <tr>
       <td><%=dojo.branch%></td>
       <td><%=dojo.street%></td>

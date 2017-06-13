@@ -8,8 +8,8 @@ class DojosController < ApplicationController
   end
 
   def create
-    @dojo=Dojo.new(dojo_params)
-    if @dojo.save
+    @dojo=Dojo.create(dojo_params)
+    if @dojo.valid?
       flash[:success] = "You have successfully created a Dojo!"
       redirect_to root_url
     else
@@ -21,6 +21,7 @@ class DojosController < ApplicationController
 
   def show
     @dojo = Dojo.find(params[:id])
+    @students=@dojo.students
   end
 
   def edit
@@ -30,7 +31,7 @@ class DojosController < ApplicationController
   def update
   @dojo = Dojo.find(params[:id])
   if @dojo.update(dojo_params)
-    flash[:success] = "You have successfully created a Dojo!"
+    flash[:success] = "You have successfully updated a Dojo!"
     redirect_to root_url
   else
     flash[:errors] = @dojo.errors.full_messages
@@ -46,7 +47,6 @@ end
 
  private
   def dojo_params
-
     params.require(:dojo).permit(:branch, :street, :city, :state)
   end
 end

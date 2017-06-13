@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :dojos
   root 'dojos#index'
   post "dojos/create"=>'dojos#create'
+  resources :students
+  get "/dojos/:id/students/new"=>'students#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
